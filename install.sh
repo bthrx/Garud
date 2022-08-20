@@ -34,7 +34,6 @@ dependencies(){
     ./0install-exegol/0install-exegol -i anew
     ./0install-exegol/0install-exegol -i gospider
     ./0install-exegol/0install-exegol -i aquatone
-    ./0install-exegol/0install-exegol -i assetfinder
     ./0install-exegol/0install-exegol -i crobat
     ./0install-exegol/0install-exegol -i gau
     ./0install-exegol/0install-exegol -i waybackurls
@@ -62,6 +61,7 @@ other_tools(){
     go install github.com/projectdiscovery/naabu/v2/cmd/naabu@latest
     go install github.com/tomnomnom/qsreplace@latest
     go install -v github.com/projectdiscovery/notify/cmd/notify@latest
+    go install github.com/tomnomnom/assetfinder@latest
     mv ~/go/bin/* /bin
 }
 wordlistsd(){
