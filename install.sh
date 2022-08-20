@@ -4,11 +4,6 @@ RT="\e[0m"
 GR="\e[32m"
 YW="\e[93m"
 
-if (( $EUID != 0 )); then
-    echo -e "I AM NOT gROOT, PLZ RUN ME AS SUCH"
-    exit
-fi
-
 folders(){
     mkdir -p ~/wordlists
 }
@@ -57,12 +52,12 @@ snek_tools(){
 }
 other_tools(){
     echo -e "${BK}Here's the rest of the kit, pal${RT}\n"
-    go install github.com/projectdiscovery/naabu/v2/cmd/naabu@latest
-    go install github.com/tomnomnom/qsreplace@latest
-    go install github.com/projectdiscovery/notify/cmd/notify@latest
-    go install github.com/tomnomnom/assetfinder@latest
-    go install github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest
-    mv ~/go/bin/* /bin
+    sudo go install github.com/projectdiscovery/naabu/v2/cmd/naabu@latest
+    sudo go install github.com/tomnomnom/qsreplace@latest
+    sudo go install github.com/projectdiscovery/notify/cmd/notify@latest
+    sudo go install github.com/tomnomnom/assetfinder@latest
+    sudo go install github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest
+    sudo mv ~/go/bin/* /bin
 }
 wordlistsd(){
     echo -e "\n${BK}What's your words worth? Here's some lists${RT}"
