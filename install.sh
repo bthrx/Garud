@@ -28,7 +28,26 @@ dependencies(){
 }
 0install_tools(){
      echo -e "${BK}TOOL TIME${RT}\n"
-    ./0install-exegol/0install-exegol -b gf,sublist3r,anew,gobuster,gospider,aquatone,assetfinder,crobat,gau,waybackurls,kxss,ffuf,dnsx,dalfox,crlfuzz,nuclei,subfinder,httprobe,httpx,amass
+    ./0install-exegol/0install-exegol -i gf
+    ./0install-exegol/0install-exegol -i sublist3r
+    ./0install-exegol/0install-exegol -i anew
+    ./0install-exegol/0install-exegol -i gobuster
+    ./0install-exegol/0install-exegol -i gospider
+    ./0install-exegol/0install-exegol -i aquatone
+    ./0install-exegol/0install-exegol -i assetfinder
+    ./0install-exegol/0install-exegol -i crobat
+    ./0install-exegol/0install-exegol -i gau
+    ./0install-exegol/0install-exegol -i waybackurls
+    ./0install-exegol/0install-exegol -i kxss
+    ./0install-exegol/0install-exegol -i ffuf
+    ./0install-exegol/0install-exegol -i dnsx
+    ./0install-exegol/0install-exegol -i dalfox
+    ./0install-exegol/0install-exegol -i crlfuzz
+    ./0install-exegol/0install-exegol -i nuclei
+    ./0install-exegol/0install-exegol -i subfinder
+    ./0install-exegol/0install-exegol -i httprobe
+    ./0install-exegol/0install-exegol -i httpx
+    ./0install-exegol/0install-exegol -i amass
 }
 snek_tools(){
     echo -e "${BK}scottie PIPin-stalling snek packages${RT}\n"
