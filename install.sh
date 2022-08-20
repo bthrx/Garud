@@ -20,6 +20,7 @@ dependencies(){
     sudo apt-get install chromium-browser -y
     sudo apt-get install golang-go -y
     sudo apt-get install gobuster -y
+    sudo snap install amass
     echo -e "${GR}SUCCESS${RT}\n"
 }
 0installd(){
@@ -43,11 +44,9 @@ dependencies(){
     ./0install-exegol/0install-exegol -i dalfox
     ./0install-exegol/0install-exegol -i crlfuzz
     ./0install-exegol/0install-exegol -i nuclei
-    ./0install-exegol/0install-exegol -i subfinder
     ./0install-exegol/0install-exegol -i httprobe
     ./0install-exegol/0install-exegol -i httpx
-    ./0install-exegol/0install-exegol -i amass
-}
+bhed}
 snek_tools(){
     echo -e "${BK}scottie PIPin-stalling snek packages${RT}\n"
     pip3 install bhedak
@@ -57,11 +56,12 @@ snek_tools(){
     pip3 install uro
 }
 other_tools(){
-    echo -e "${BK}Really? These tools aren't in 0install yet? Ok then here you go${RT}\n"
+    echo -e "${BK}Here's the rest of the kit, pal${RT}\n"
     go install github.com/projectdiscovery/naabu/v2/cmd/naabu@latest
     go install github.com/tomnomnom/qsreplace@latest
-    go install -v github.com/projectdiscovery/notify/cmd/notify@latest
+    go install github.com/projectdiscovery/notify/cmd/notify@latest
     go install github.com/tomnomnom/assetfinder@latest
+    go install github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest
     mv ~/go/bin/* /bin
 }
 wordlistsd(){
