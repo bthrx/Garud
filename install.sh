@@ -52,11 +52,11 @@ snek_tools(){
 }
 other_tools(){
     echo -e "${BK}Here's the rest of the kit, pal${RT}\n"
-    sudo go install github.com/projectdiscovery/naabu/v2/cmd/naabu@latest
-    sudo go install github.com/tomnomnom/qsreplace@latest
-    sudo go install github.com/projectdiscovery/notify/cmd/notify@latest
-    sudo go install github.com/tomnomnom/assetfinder@latest
-    sudo go install github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest
+    go install github.com/projectdiscovery/naabu/v2/cmd/naabu@latest
+    go install github.com/tomnomnom/qsreplace@latest
+    go install github.com/projectdiscovery/notify/cmd/notify@latest
+    go install github.com/tomnomnom/assetfinder@latest
+    go install github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest
     sudo mv ~/go/bin/* /bin
 }
 wordlistsd(){
