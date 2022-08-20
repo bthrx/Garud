@@ -45,6 +45,7 @@ other_tools(){
     go install github.com/projectdiscovery/naabu/v2/cmd/naabu@latest
     go install github.com/tomnomnom/qsreplace@latest
     go install -v github.com/projectdiscovery/notify/cmd/notify@latest
+    mv ~/go/bin/* /bin
 }
 wordlistsd(){
     echo -e "\n${BK}What's your words worth? Here's some lists${RT}"
@@ -66,8 +67,7 @@ main(){
     other_tools
     wordlistsd
     echo -e "\n${BK}Almost done${RT}"
-    cp ~/go/bin/* /usr/bin/
-    nuclei -update-templates
+        nuclei -update-templates
     echo -e "\nDon't forget to set up notify to discord${BK} ~/.config/notify/provider-config.yaml ${RT}"
     echo -e "That's it. If you find something throw some cash at R0X4R and JoyGhoshs"
     garud -h 2> /dev/null
