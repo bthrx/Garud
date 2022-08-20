@@ -17,7 +17,8 @@ dependencies(){
     sudo apt-get update 
     sudo apt-get full-upgrade -y 
     sudo apt-get install apt-transport-https bsdmainutils build-essential cmake curl dnsutils gcc git jq libdata-hexdump-perl libffi-dev libpcap-dev libssl-dev libxml2-dev libxml2-utils libxslt1-dev lynx medusa nmap procps pv python3 python3-dev python3-pip wget zip zlib1g-dev libpcap-dev screen -y 
-    sudo apt-get install chromium-browser 
+    sudo apt-get install chromium-browser
+    sudo apt-get install golang-go
     echo -e "${GR}SUCCESS${RT}\n"
 }
 0installd(){
@@ -29,7 +30,7 @@ dependencies(){
 }
 0install_tools(){
      echo -e "${BK}TOOL TIME${RT}\n"
-    0install -b go,gf,sublist3r,anew,gobuster,gospider,aquatone,assetfinder,crobat,gau,waybackurls,kxss,ffuf,dnsx,dalfox,crlfuzz,nuclei,subfinder,httprobe,httpx,amass
+    0install -b gf,sublist3r,anew,gobuster,gospider,aquatone,assetfinder,crobat,gau,waybackurls,kxss,ffuf,dnsx,dalfox,crlfuzz,nuclei,subfinder,httprobe,httpx,amass
 }
 snek_tools(){
     echo -e "${BK}scottie PIPin-stalling snek packages${RT}\n"
