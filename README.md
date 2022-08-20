@@ -1,5 +1,5 @@
 <h1 align="center">
-  Rework for simple deployment on an ubuntu server using my modified version of 0install. If you find this and like it donate to the R0X4R and JoyGhoshs
+  Rework for simple deployment on an ubuntu server using my modified version of 0install. If you find this and like it donate to R0X4R and JoyGhoshs
   <br>
   <a href="https://github.com/R0X4R/Garud/"><img src=".github/img/garud.png" width="500px" alt="Garud"></a>
 </h1>
