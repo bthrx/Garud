@@ -19,6 +19,7 @@ dependencies(){
     sudo apt-get install apt-transport-https bsdmainutils build-essential cmake curl dnsutils gcc git jq libdata-hexdump-perl libffi-dev libpcap-dev libssl-dev libxml2-dev libxml2-utils libxslt1-dev lynx medusa nmap procps pv python3 python3-dev python3-pip wget zip zlib1g-dev libpcap-dev screen -y 
     sudo apt-get install chromium-browser -y
     sudo apt-get install golang-go -y
+    sudo apt-get install gobuster -y
     echo -e "${GR}SUCCESS${RT}\n"
 }
 0installd(){
@@ -31,7 +32,6 @@ dependencies(){
     ./0install-exegol/0install-exegol -i gf
     ./0install-exegol/0install-exegol -i sublist3r
     ./0install-exegol/0install-exegol -i anew
-    ./0install-exegol/0install-exegol -i gobuster
     ./0install-exegol/0install-exegol -i gospider
     ./0install-exegol/0install-exegol -i aquatone
     ./0install-exegol/0install-exegol -i assetfinder
