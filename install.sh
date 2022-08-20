@@ -25,12 +25,11 @@ dependencies(){
     echo -e "${BK}INSTALLING 0install-exegol VERSION${RT}\n"
     git clone https://github.com/bthrx/0install-exegol
     chmod +x 0install-exegol/0install-exegol
-    mv 0install-exegol/0install-exegol /usr/bin/0install
-    rm -r 0-install-exegol
+    mv 0install-exegol 0install
 }
 0install_tools(){
      echo -e "${BK}TOOL TIME${RT}\n"
-    0install -b gf,sublist3r,anew,gobuster,gospider,aquatone,assetfinder,crobat,gau,waybackurls,kxss,ffuf,dnsx,dalfox,crlfuzz,nuclei,subfinder,httprobe,httpx,amass
+    ./0install/0install -b gf,sublist3r,anew,gobuster,gospider,aquatone,assetfinder,crobat,gau,waybackurls,kxss,ffuf,dnsx,dalfox,crlfuzz,nuclei,subfinder,httprobe,httpx,amass
 }
 snek_tools(){
     echo -e "${BK}scottie PIPin-stalling snek packages${RT}\n"
