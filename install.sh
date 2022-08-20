@@ -46,7 +46,7 @@ dependencies(){
     ./0install-exegol/0install-exegol -i nuclei
     ./0install-exegol/0install-exegol -i httprobe
     ./0install-exegol/0install-exegol -i httpx
-bhed}
+}
 snek_tools(){
     echo -e "${BK}scottie PIPin-stalling snek packages${RT}\n"
     pip3 install bhedak
