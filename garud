@@ -115,7 +115,7 @@ INFOM(){
 \t\t█░▀█ █▄▄█ █▄▄▀ █░░█ █░░█
 \t\t▀▀▀▀ ▀░░▀ ▀░▀▀ ░▀▀▀ ▀▀▀░
 ${RT}"
-    echo -e "[${YW}GARUD${RT}] == A RECONNAISSANCE SUITE FOR BUG BOUNTY (${BK}@R0X4R${RT})"
+    echo -e "[${YW}GARUD${RT}] == A CONNAISSANCE SUITE FOR BUG BOUNTY (${BK}@R0X4R${RT})"
     OT=$(echo -e "$(echo $DM | sed -e 's/\.[a-z]*$//')_$(date +"%Y_%M_%d-%H_%M_%S")")
     mkdir -p $OT 
     cd $OT
@@ -159,11 +159,11 @@ SUBD_PASV(){
 
 SUBD_ACTV(){
     echo "Starting Ffuf" | notify -silent
-    timeout 50m ffuf -u http://FUZZ.$DM/ -t 100 -p '1.0-2.0' -w ~/wordlists/subdomains.txt -H "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36" -mc 200 -r -o .tmp/ffuf.json -s  
+    ffuf -u http://FUZZ.$DM/ -t 10 -p '1.0-2.0' -w ~/wordlists/subdomains.txt -H "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36" -mc 200 -r -o .tmp/ffuf.json -s  
     echo "Ffuf complete... Starting Gobuster" | notify -silent
-    timeout 50m gobuster dns -d $DM --no-error -z -q -t 100 -w ~/wordlists/subdomains.txt  | sed 's/Found: //g' | anew -q .tmp/gobuster.list
+    gobuster dns -d $DM --no-error -z -q -t 10 -w ~/wordlists/subdomains.txt  | sed 's/Found: //g' | anew -q .tmp/gobuster.list
     echo "Gobuster complete... Starting Amass enumb active " | notify -silent
-    timeout 50m amass enum -active -brute -w ~/wordlists/subdomains.txt -d $DM -o .tmp/amassact.list 
+    amass enum -active -brute -w ~/wordlists/subdomains.txt -d $DM -o .tmp/amassact.list 
     echo "Amass enum active complete." | notify -silent
     cat .tmp/ffuf.json  | jq -r '.results[] | .host'  | anew -q .tmp/ffuf.list && rm -rf .tmp/ffuf.json
     echo "Active Subdomain complete... Cleaning up files"
@@ -171,7 +171,7 @@ SUBD_ACTV(){
 
 SUBD_SCND(){
     cat .tmp/*.list | grep -v "*" | sed '/@\|<BR>\|\_\|*/d' | grep "$DM" | anew -q .tmp/domains
-    xargs -a .tmp/domains -P 50 -I % bash -c "assetfinder --subs-only % | anew -q .tmp/seconddomains.list" ; timeout 30m xargs -a .tmp/domains -P 10 -I % bash -c "amass enum -passive -d %"  | anew -q .tmp/seconddomains.list
+    xargs -a .tmp/domains -P 50 -I % bash -c "assetfinder --subs-only % | anew -q .tmp/seconddomains.list" ; xargs -a .tmp/domains -P 10 -I % bash -c "amass enum -passive -d %"  | anew -q .tmp/seconddomains.list
 
 }
 
@@ -213,7 +213,7 @@ WEBC_RAWL(){
     echo -e "${BK}        ${RT}" | tr -d '\n' | pv -qL 6; echo -e " STARTING WEBCRAWLING ON ${BK}$DM${RT} (${YW}it may take time${RT})"
     echo "Web Crawling Starting" | notify -silent
     agnee -d $DM -q -o database/dorks.txt -p 4
-    timeout 50m gospider -S database/lives.txt -d 10 -c 20 -t 50 -K 3 --no-redirect --js -a -w --blacklist ".(eot|jpg|jpeg|gif|css|tif|tiff|png|ttf|otf|woff|woff2|ico|svg|txt)" --include-subs -q -o .tmp/gospider  | anew -q .tmp/gospider.list
+    gospider -S database/lives.txt -d 10 -c 20 -t 0 -K 3 --no-redirect --js -a -w --blacklist ".(eot|jpg|jpeg|gif|css|tif|tiff|png|ttf|otf|woff|woff2|ico|svg|txt)" --include-subs -q -o .tmp/gospider  | anew -q .tmp/gospider.list
     echo "Gospider complete" | notify -silent
     xargs -a database/lives.txt -P 50 -I % bash -c "echo % | waybackurls"  | anew -q .tmp/waybackurls.list
     echo "Waybackurls comlpete" | notify -silent
@@ -276,7 +276,7 @@ VULN_SCAN(){
     [ "$SL" == "False" ] && cat vulns/redirect.txt 
     [ "$JO" == "False" ] || cat vulns/redirect.txt  | python3 -c "import sys; import json; print (json.dumps({'vuln_redirect':list(sys.stdin)}))" | sed 's/\\n//g' | tee .json/redirect.json 
 
-    timeout 50m xargs -a database/.gf/sqli.list -P 50 -I % bash -c "echo % | jeeves --payload-time 5" | grep "Vulnerable To" | anew vulns/sqli.txt | notify -silent  
+    xargs -a database/.gf/sqli.list -P 50 -I % bash -c "echo % | jeeves --payload-time 5" | grep "Vulnerable To" | anew vulns/sqli.txt | notify -silent  
     [ "$SL" == "False" ] && cat vulns/sqli.txt 
     [ "$JO" == "False" ] || cat vulns/sqli.txt  | python3 -c "import sys; import json; print (json.dumps({'vuln_redirect':list(sys.stdin)}))" | sed 's/\\n//g' | tee .json/redirect.json 
 
@@ -294,7 +294,7 @@ FUZZ_DIRS(){
     echo "Fuzzing directories" | notify -silent
     for target in $(cat database/lives.txt); do
         fuzzout=$(echo $target | awk -F// '{print $NF}' | sed -E 's/[\.|:]+/_/g')
-        ffuf -u $target/FUZZ -ac -t 100 -mc 200 -sf -H "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36" -w ~/wordlists/fuzz.txt -p '0.6-1.2' -e .html,.json,.php,.asp,.aspx,.log,.sql,.txt,.asp,.jsp,.bak,~,.db -maxtime 900 -o database/dirs/$fuzzout.json -s  
+        ffuf -u $target/FUZZ -ac -t 10 -mc 200 -sf -H "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36" -w ~/wordlists/fuzz.txt -p '0.6-1.2' -e .html,.json,.php,.asp,.aspx,.log,.sql,.txt,.asp,.jsp,.bak,~,.db -o database/dirs/$fuzzout.json -s  
         cat database/dirs/$fuzzout.json | jq -r '.results[] | .status, .length, .url'  | xargs -n3 | anew -q database/dirs/$fuzzout.txt
         rm -rf database/dirs/$fuzzout.json
     done
