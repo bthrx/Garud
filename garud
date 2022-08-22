@@ -169,9 +169,11 @@ SUBD_ACTV(){
 }
 
 SUBD_SCND(){
-    echo "Preparing to use assetfinder" | notify -silent
+    echo "Running assetfinder on found subdomains" | notify -silent
     cat .tmp/*.list | grep -v "*" | sed '/@\|<BR>\|\_\|*/d' | grep "$DM" | anew -q .tmp/domains
-    xargs -a .tmp/domains -P 1 -I % bash -c "assetfinder --subs-only % | anew -q .tmp/seconddomains.list" ; xargs -a .tmp/domains -P 1 -I % bash -c "amass enum -passive -d %"  | anew -q .tmp/seconddomains.list
+    xargs -a .tmp/domains -P 1 -I % bash -c "assetfinder --subs-only % | anew -q .tmp/seconddomains.list"
+    echo "Running amass enum passive on found subdomains" | notify -silent
+    xargs -a .tmp/domains -P 1 -I % bash -c "amass enum -passive -d %"  | anew -q .tmp/seconddomains.list
     echo "Subdomains complete... Cleaning up files" | notify -silent
 }
 
